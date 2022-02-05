@@ -25,3 +25,14 @@ class PointChangeEvent extends PointEvent {
 
   PointChangeEvent({required this.indexPoint, required this.changePoint});
 }
+
+class BoxPointChangeEvent extends PointEvent {
+  final int indexBox;
+  final String newTitl;
+  final String newSubTitl;
+
+  BoxPointChangeEvent(
+      {required this.indexBox,
+      required this.newTitl,
+      required this.newSubTitl});
+}

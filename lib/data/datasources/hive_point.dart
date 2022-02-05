@@ -3,6 +3,7 @@ import 'package:mmorpg_life/data/datasources/hive_name.dart';
 
 import 'package:mmorpg_life/data/models/points_model.dart';
 import 'package:mmorpg_life/domain/usecases/add_point.dart';
+import 'package:mmorpg_life/domain/usecases/box_point_change.dart';
 import 'package:mmorpg_life/domain/usecases/change_point.dart';
 import 'package:mmorpg_life/domain/usecases/delete_point.dart';
 
@@ -59,4 +60,16 @@ class AddPointInDataImpl implements AddPointIndata {
     var box = Hive.box<PointModel>(HiveBoxes.toPoint);
     box.add(PointModel(id: " ", subtitl: subt, titl: t, point: 0));
   }
+}
+
+class BoxPointChangeImpl implements BoxPointChange{
+  @override
+  Future boxChange(int indx, String titl, String subtitl) async{
+    var box = Hive.box<PointModel>(HiveBoxes.toPoint);
+    PointModel? res = box.getAt(indx);
+    box.putAt(indx, PointModel(point: res!.point, subtitl: subtitl, titl: titl, id: ''));
+    return;
+  }
+  
+  
 }

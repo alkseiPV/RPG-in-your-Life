@@ -4,6 +4,7 @@ import 'package:mmorpg_life/data/repositories/point_repository_data.dart';
 import 'package:mmorpg_life/domain/bloc/bloc_point/bloc_points.dart';
 import 'package:mmorpg_life/domain/repositories/point_repository.dart';
 import 'package:mmorpg_life/domain/usecases/add_point.dart';
+import 'package:mmorpg_life/domain/usecases/box_point_change.dart';
 import 'package:mmorpg_life/domain/usecases/change_point.dart';
 import 'package:mmorpg_life/domain/usecases/delete_point.dart';
 
@@ -17,7 +18,8 @@ Future<void> init() async {
         getPoints: sl(),
         deletePoint: sl(),
         changePoint: sl(),
-        addPointIndata: sl()
+        addPointIndata: sl(),
+        boxPointChange: sl(),
       ));
 
   //usecase
@@ -25,6 +27,7 @@ Future<void> init() async {
   sl.registerLazySingleton<DeletePoint>(() => DeletePointImpl());
   sl.registerLazySingleton<ChangePoint>(() => ChangePointImpl());
   sl.registerLazySingleton<AddPointIndata>(() => AddPointInDataImpl());
+  sl.registerLazySingleton<BoxPointChange>(() => BoxPointChangeImpl());
 
 //repository
   sl.registerLazySingleton<PointRepository>(
