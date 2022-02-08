@@ -63,6 +63,7 @@ class PointList extends StatelessWidget {
                                 print(b);
                                 userBloc.add(PointChangeEvent(
                                     indexPoint: index, changePoint: a));
+                                userBloc.add(LoadPointEvent());
                               },
                             ),
                             Text('${points[index].point}'),
@@ -74,6 +75,7 @@ class PointList extends StatelessWidget {
                                 print(b);
                                 userBloc.add(PointChangeEvent(
                                     indexPoint: index, changePoint: a));
+                                userBloc.add(LoadPointEvent());
                               },
                             )
                           ],
@@ -84,6 +86,7 @@ class PointList extends StatelessWidget {
                 ),
                 onDismissed: (direction) async {
                   userBloc.add(PointDissmis(a: points.indexOf(points[index])));
+                  userBloc.add(LoadPointEvent());
                 },
               );
             },

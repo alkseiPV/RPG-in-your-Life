@@ -82,6 +82,7 @@ class _ChangeBoxPointState extends State<ChangeBoxPoint> {
                           newTitl: titl!,
                           newSubTitl: subtitl ?? "описание не задано"));
                       Navigator.of(context).pop();
+                      userBloc.add(LoadPointEvent());
                     } else {
                       print('form is invalid');
                     }

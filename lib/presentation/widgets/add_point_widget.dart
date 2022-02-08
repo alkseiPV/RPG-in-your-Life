@@ -88,6 +88,7 @@ class _AddPointState extends State<AddPoint> {
       userBloc.add(PointOnFormSubmit(
           titl: titl!, subtitl: subtitl ?? "описание не задано"));
       Navigator.of(context).pop();
+      userBloc.add(LoadPointEvent());
     } else {
       print('form is invalid');
     }
