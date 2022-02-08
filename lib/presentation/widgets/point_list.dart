@@ -5,6 +5,9 @@ import 'package:mmorpg_life/domain/bloc/bloc_point/bloc_point_state.dart';
 import 'package:mmorpg_life/domain/bloc/bloc_point/bloc_points.dart';
 import 'package:mmorpg_life/domain/entities/point_entity.dart';
 import 'package:mmorpg_life/presentation/widgets/change_box_point.dart';
+import 'package:mmorpg_life/presentation/widgets/shimmer_widget.dart';
+import 'package:shimmer/shimmer.dart';
+
 
 class PointList extends StatelessWidget {
   const PointList({Key? key}) : super(key: key);
@@ -17,9 +20,15 @@ class PointList extends StatelessWidget {
       builder: (context, state) {
         List<PointEntity> points = [];
         if (state is LoadingPointState) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
+          return ListView.builder(
+              itemCount: 8,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  leading: ShimmerWidget.circular(width: 30, height:30, shapeBorder: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),),
+                  title: ShimmerWidget.rectangular(height: 16, width: 45,),
+                  subtitle: ShimmerWidget.rectangular(height: 12, width: 70,),
+                );
+              });
         } else if (state is LoadedPointState) {
           points = state.loadedPoint;
         }
@@ -33,7 +42,7 @@ class PointList extends StatelessWidget {
                         builder: (context) => ChangeBoxPoint(
                             t: points[index].titl!,
                             indx: index,
-                            subt: points[index].subtitl!) ))
+                            subt: points[index].subtitl!)))
                   },
                   child: ListTile(
                     title: Text('${points[index].titl}'),

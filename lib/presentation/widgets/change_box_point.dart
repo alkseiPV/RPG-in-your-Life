@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mmorpg_life/common/colors_app.dart';
 import 'package:mmorpg_life/domain/bloc/bloc_point/bloc_point_event.dart';
 import 'package:mmorpg_life/domain/bloc/bloc_point/bloc_points.dart';
 import 'package:provider/src/provider.dart';
@@ -17,18 +18,18 @@ class ChangeBoxPoint extends StatefulWidget {
 
 class _ChangeBoxPointState extends State<ChangeBoxPoint> {
   String? titl;
-    String? subtitl;
-    final _formKey = GlobalKey<FormState>();
+  String? subtitl;
+  final _formKey = GlobalKey<FormState>();
   build(BuildContext context) {
-    
     return Scaffold(
+      backgroundColor: AppColors.mainBackgroundColor,
       body: SafeArea(
         child: Form(
           key: _formKey,
           child: Padding(
             padding: const EdgeInsets.all(8),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Text(
                   "Текущий Заголовок: ${widget.t}",
@@ -65,7 +66,13 @@ class _ChangeBoxPointState extends State<ChangeBoxPoint> {
                       });
                     }),
                 ElevatedButton(
-                  child: Text('Add'),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.purple,
+                  ),
+                  child: Text(
+                    'CHANGE',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   onPressed: () {
                     final form = _formKey.currentState!;
                     final PointBloc userBloc = context.read<PointBloc>();

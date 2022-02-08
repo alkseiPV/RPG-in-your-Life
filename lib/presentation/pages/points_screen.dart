@@ -48,7 +48,7 @@ class _PointScreenState extends State<PointScreen> {
           await Navigator.of(context)
               .push(MaterialPageRoute(builder: (context) => AddPoint()));
         },
-        child: Icon(Icons.add ,color:Colors.pink ,),
+        child: Icon(Icons.add ,color:Colors.white70 ,),
       ),
 
   //типо внёс изменения

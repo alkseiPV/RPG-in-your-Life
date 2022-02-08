@@ -1,11 +1,11 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:mmorpg_life/common/colors_app.dart';
 
 import 'package:mmorpg_life/domain/bloc/bloc_point/bloc_point_event.dart';
 import 'package:mmorpg_life/domain/bloc/bloc_point/bloc_points.dart';
 import 'package:provider/src/provider.dart';
-
 
 class AddPoint extends StatefulWidget {
   final formKey = GlobalKey<FormState>();
@@ -21,20 +21,32 @@ class _AddPointState extends State<AddPoint> {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
+      backgroundColor: AppColors.mainAppBarColor,
       body: SafeArea(
         child: Form(
           key: _formKey,
           child: Padding(
             padding: const EdgeInsets.all(8),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
+                Text(
+                  "ADD A NEW ACTIVITY \n      TO YOURSELF",
+                  style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.italic),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
                 TextFormField(
                   autofocus: true,
                   initialValue: '',
-                  decoration: const InputDecoration(labelText: 'title'),
+                  decoration: const InputDecoration(
+                    labelText: 'title',
+                  ),
                   onChanged: (value) {
                     setState(() {
                       titl = value;
@@ -54,8 +66,11 @@ class _AddPointState extends State<AddPoint> {
                         subtitl = value;
                       });
                     }),
+                    SizedBox(
+                      height: 15,
+                    ),
                 OutlineButton(
-                  child: Text('Add'),
+                  child: Text('ADD', style: TextStyle(fontWeight: FontWeight.bold),),
                   onPressed: _validateAndSave,
                 )
               ],
@@ -70,7 +85,8 @@ class _AddPointState extends State<AddPoint> {
     final form = _formKey.currentState!;
     final PointBloc userBloc = context.read<PointBloc>();
     if (form.validate()) {
-      userBloc.add(PointOnFormSubmit(titl: titl!, subtitl: subtitl??"описание не задано"));
+      userBloc.add(PointOnFormSubmit(
+          titl: titl!, subtitl: subtitl ?? "описание не задано"));
       Navigator.of(context).pop();
     } else {
       print('form is invalid');

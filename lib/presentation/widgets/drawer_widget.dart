@@ -10,7 +10,6 @@ import 'package:mmorpg_life/presentation/pages/goals_screen.dart';
 import 'package:mmorpg_life/presentation/pages/points_screen.dart';
 import 'package:provider/src/provider.dart';
 
-
 Drawer myDrawer(BuildContext context) {
   final PointBloc userBloc = context.read<PointBloc>();
   return Drawer(
@@ -37,12 +36,13 @@ Drawer myDrawer(BuildContext context) {
         ),
         ListTile(
           title: const Text('POINTS'),
-          onTap: () async{
+          onTap: () async {
             Route route =
                 MaterialPageRoute(builder: (context) => PointScreen());
             Navigator.push(context, route);
-            userBloc.add(LoadPointEvent());
-
+            Future.delayed(Duration(seconds: 1), () {
+              userBloc.add(LoadPointEvent());
+            });
           },
         ),
         ListTile(

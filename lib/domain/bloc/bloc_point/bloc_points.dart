@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:mmorpg_life/domain/bloc/bloc_point/bloc_point_event.dart';
