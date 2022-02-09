@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:mmorpg_life/common/colors_app.dart';
 
-import 'package:mmorpg_life/presentation/pages/goals_screen.dart';
+
 
 import 'package:mmorpg_life/presentation/widgets/drawer_widget.dart';
 
@@ -73,8 +73,7 @@ class _MenuScreenState extends State<MenuScreen> {
             ),
           //MainGoal(),
             IconButton(icon: Icon(Icons.dangerous), onPressed: (){
-              Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => GoalsScreen()));
+              
             },)
           ],
         ),

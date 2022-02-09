@@ -6,7 +6,7 @@ import 'package:mmorpg_life/domain/bloc/bloc_point/bloc_point_event.dart';
 import 'package:mmorpg_life/domain/bloc/bloc_point/bloc_points.dart';
 
 import 'package:mmorpg_life/presentation/pages/achivments_screen.dart';
-import 'package:mmorpg_life/presentation/pages/goals_screen.dart';
+
 import 'package:mmorpg_life/presentation/pages/points_screen.dart';
 import 'package:provider/src/provider.dart';
 
@@ -48,9 +48,7 @@ Drawer myDrawer(BuildContext context) {
         ListTile(
           title: const Text('GOALS'),
           onTap: () {
-            Route route =
-                MaterialPageRoute(builder: (context) => GoalsScreen());
-            Navigator.push(context, route);
+            
           },
         ),
         ListTile(
