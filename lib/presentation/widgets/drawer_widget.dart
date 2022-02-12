@@ -2,16 +2,20 @@
 
 import 'package:flutter/material.dart';
 import 'package:mmorpg_life/common/colors_app.dart';
+import 'package:mmorpg_life/domain/bloc/bloc_goal/bloc_goal_event.dart';
+import 'package:mmorpg_life/domain/bloc/bloc_goal/bloc_goals.dart';
 import 'package:mmorpg_life/domain/bloc/bloc_point/bloc_point_event.dart';
 import 'package:mmorpg_life/domain/bloc/bloc_point/bloc_points.dart';
 
 import 'package:mmorpg_life/presentation/pages/achivments_screen.dart';
+import 'package:mmorpg_life/presentation/pages/goals_screen.dart';
 
 import 'package:mmorpg_life/presentation/pages/points_screen.dart';
 import 'package:provider/src/provider.dart';
 
 Drawer myDrawer(BuildContext context) {
   final PointBloc userBloc = context.read<PointBloc>();
+  final GoalBloc userBlocGoal = context.read<GoalBloc>();
   return Drawer(
     backgroundColor: Colors.yellow[50],
     child: ListView(
@@ -47,8 +51,13 @@ Drawer myDrawer(BuildContext context) {
         ),
         ListTile(
           title: const Text('GOALS'),
-          onTap: () {
-            
+          onTap: () async {
+            Route route =
+                MaterialPageRoute(builder: (context) => GoalsScreen());
+            Navigator.push(context, route);
+            Future.delayed(Duration(seconds: 1), () {
+              userBlocGoal.add(LoadGoalEvent());
+            });
           },
         ),
         ListTile(

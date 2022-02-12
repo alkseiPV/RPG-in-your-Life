@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:mmorpg_life/domain/bloc/bloc_goal/bloc_goals.dart';
 import 'package:mmorpg_life/domain/bloc/bloc_point/bloc_points.dart';
 
 import 'package:mmorpg_life/locator_service.dart' as di;
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
         providers: [
           BlocProvider<PointBloc>(create: (context) => sl<PointBloc>()),
+          BlocProvider<GoalBloc>(create: (context)=> sl<GoalBloc>(),)
         ],
         child: MaterialApp(
           home: MenuScreen(),

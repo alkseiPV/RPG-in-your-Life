@@ -6,7 +6,7 @@ import 'package:mmorpg_life/domain/bloc/bloc_point/bloc_points.dart';
 import 'package:mmorpg_life/domain/entities/point_entity.dart';
 import 'package:mmorpg_life/presentation/widgets/change_box_point.dart';
 import 'package:mmorpg_life/presentation/widgets/shimmer_widget.dart';
-import 'package:shimmer/shimmer.dart';
+
 
 
 class PointList extends StatelessWidget {
