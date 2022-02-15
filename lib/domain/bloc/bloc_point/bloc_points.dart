@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mmorpg_life/domain/bloc/bloc_lvl/bloc_lvl.dart';
 
 import 'package:mmorpg_life/domain/bloc/bloc_point/bloc_point_event.dart';
 import 'package:mmorpg_life/domain/bloc/bloc_point/bloc_point_state.dart';
@@ -15,12 +16,14 @@ class PointBloc extends Bloc<PointEvent, PointState> {
   final ChangePoint changePoint;
   final AddPointIndata addPointIndata;
   final BoxPointChange boxPointChange;
+
   PointBloc(
       {required this.getPoints,
       required this.deletePoint,
       required this.changePoint,
       required this.addPointIndata,
-      required this.boxPointChange})
+      required this.boxPointChange,
+      })
       : super(LoadingPointState()) {
     on<LoadPointEvent>((event, emit) async {
       emit(LoadingPointState());
