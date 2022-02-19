@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mmorpg_life/domain/bloc/bloc_lvl/bloc_lvl.dart';
 
+
+
 import 'package:mmorpg_life/domain/bloc/bloc_point/bloc_point_event.dart';
 import 'package:mmorpg_life/domain/bloc/bloc_point/bloc_point_state.dart';
 import 'package:mmorpg_life/domain/usecases/add_point.dart';
@@ -10,12 +12,15 @@ import 'package:mmorpg_life/domain/usecases/delete_point.dart';
 
 import 'package:mmorpg_life/domain/usecases/get_points.dart';
 
+
 class PointBloc extends Bloc<PointEvent, PointState> {
   final GetPoints getPoints;
   final DeletePoint deletePoint;
   final ChangePoint changePoint;
   final AddPointIndata addPointIndata;
   final BoxPointChange boxPointChange;
+  final LvlBloc lvlBloc;
+
 
   PointBloc(
       {required this.getPoints,
@@ -23,6 +28,8 @@ class PointBloc extends Bloc<PointEvent, PointState> {
       required this.changePoint,
       required this.addPointIndata,
       required this.boxPointChange,
+      required this.lvlBloc,
+
       })
       : super(LoadingPointState()) {
     on<LoadPointEvent>((event, emit) async {
@@ -42,6 +49,12 @@ class PointBloc extends Bloc<PointEvent, PointState> {
     });
     on<PointChangeEvent>((event, emit) async {
       changePoint.changeThisPoint(event.indexPoint, event.changePoint);
+
+    
+        await lvlBloc.lvlRepository.lvlExp();
+        await lvlBloc.incrementLVL.incl(event.changePoint * 0.1);
+   
+      
     });
     on<PointOnFormSubmit>((event, emit) async {
       addPointIndata.addPointInHive(event.titl, event.subtitl);

@@ -17,6 +17,7 @@ class PointScreen extends StatefulWidget {
 class _PointScreenState extends State<PointScreen> {
   @override
   Widget build(BuildContext context) {
+    PointBloc userBloc = context.read<PointBloc>();
     return Scaffold(
       backgroundColor: AppColors.mainBackgroundColor,
       appBar: AppBar(
@@ -34,7 +35,7 @@ class _PointScreenState extends State<PointScreen> {
           IconButton(
             icon: Icon(Icons.restart_alt_outlined),
             onPressed: () {
-              final PointBloc userBloc = context.read<PointBloc>();
+          
               userBloc.add(LoadPointEvent());
             },
           )

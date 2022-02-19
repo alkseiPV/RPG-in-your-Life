@@ -59,8 +59,8 @@ class PointList extends StatelessWidget {
                               icon: Icon(Icons.remove),
                               onPressed: () {
                                 int a = -1;
-                                int b = index;
-                                print(b);
+                                
+                               
                                 userBloc.add(PointChangeEvent(
                                     indexPoint: index, changePoint: a));
                                 userBloc.add(LoadPointEvent());
@@ -71,8 +71,7 @@ class PointList extends StatelessWidget {
                               icon: Icon(Icons.add),
                               onPressed: () {
                                 int a = 1;
-                                int b = index;
-                                print(b);
+                                
                                 userBloc.add(PointChangeEvent(
                                     indexPoint: index, changePoint: a));
                                 userBloc.add(LoadPointEvent());

@@ -7,7 +7,7 @@ import 'package:mmorpg_life/domain/bloc/bloc_goal/bloc_goals.dart';
 import 'package:mmorpg_life/domain/bloc/bloc_point/bloc_point_event.dart';
 import 'package:mmorpg_life/domain/bloc/bloc_point/bloc_points.dart';
 
-import 'package:mmorpg_life/presentation/pages/achivments_screen.dart';
+
 import 'package:mmorpg_life/presentation/pages/goals_screen.dart';
 
 import 'package:mmorpg_life/presentation/pages/points_screen.dart';
@@ -59,15 +59,7 @@ Drawer myDrawer(BuildContext context) {
               userBlocGoal.add(LoadGoalEvent());
             });
           },
-        ),
-        ListTile(
-          title: const Text('ACHIVMENTS'),
-          onTap: () {
-            Route route =
-                MaterialPageRoute(builder: (context) => AchivScreen());
-            Navigator.push(context, route);
-          },
-        ),
+        )
       ],
     ),
   );

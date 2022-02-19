@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:mmorpg_life/common/colors_app.dart';
-
-
+import 'package:mmorpg_life/domain/bloc/bloc_lvl/bloc_lvl.dart';
+import 'package:mmorpg_life/domain/bloc/bloc_lvl/bloc_lvl_event.dart';
 
 import 'package:mmorpg_life/presentation/widgets/drawer_widget.dart';
-
+import 'package:mmorpg_life/presentation/widgets/lvl_progress_indicator.dart';
+import 'package:provider/src/provider.dart';
 
 class MenuScreen extends StatefulWidget {
   const MenuScreen({key}) : super(key: key);
@@ -17,6 +18,7 @@ class MenuScreen extends StatefulWidget {
 class _MenuScreenState extends State<MenuScreen> {
   @override
   Widget build(BuildContext context) {
+    LvlBloc userBloc = context.read<LvlBloc>();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -24,15 +26,6 @@ class _MenuScreenState extends State<MenuScreen> {
           style: TextStyle(color: AppColors.textColorBlack),
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.help_rounded,
-              color: Colors.white70,
-            ),
-            onPressed: () {},
-          )
-        ],
         backgroundColor: AppColors.mainAppBarColor,
       ),
       backgroundColor: AppColors.mainBackgroundColor,
@@ -59,22 +52,30 @@ class _MenuScreenState extends State<MenuScreen> {
                     SizedBox(
                       width: 40,
                     ),
-                    Text(
-                      "YOUR NAME ",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    )
+                    GestureDetector(
+                      onTap: () {
+                        userBloc.add(IncLvlEvent());
+                      },
+                      child: Column(
+                        children: [
+                          Text(
+                            "I'm BATMAN! ",
+                            style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                fontStyle: FontStyle.italic),
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          LvlProgress()
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
-          //MainGoal(),
-            IconButton(icon: Icon(Icons.dangerous), onPressed: (){
-              
-            },)
           ],
         ),
       ),

@@ -5,7 +5,6 @@ import 'package:mmorpg_life/domain/bloc/bloc_goal/bloc_goal_state.dart';
 import 'package:mmorpg_life/domain/bloc/bloc_goal/bloc_goals.dart';
 import 'package:mmorpg_life/domain/entities/goal_entity.dart';
 import 'package:mmorpg_life/presentation/widgets/shimmer_widget.dart';
-import 'package:provider/src/provider.dart';
 
 class GoalList extends StatelessWidget {
   const GoalList({Key? key}) : super(key: key);

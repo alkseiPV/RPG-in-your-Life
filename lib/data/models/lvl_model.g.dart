@@ -18,15 +18,18 @@ class LVLModelAdapter extends TypeAdapter<LVLModel> {
     };
     return LVLModel(
       experience: fields[0] as double?,
+      lvls: fields[1] as int?,
     );
   }
 
   @override
   void write(BinaryWriter writer, LVLModel obj) {
     writer
-      ..writeByte(1)
+      ..writeByte(2)
       ..writeByte(0)
-      ..write(obj.experience);
+      ..write(obj.experience)
+      ..writeByte(1)
+      ..write(obj.lvls);
   }
 
   @override
