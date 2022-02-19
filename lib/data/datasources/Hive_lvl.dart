@@ -16,9 +16,10 @@ class HiveLVLImpl implements HiveLVL {
     }
 
     var boxg = await Hive.openBox<LVLModel>(HiveBoxes.tolvl);
-
+  if(boxg.isEmpty){
      boxg.add(LVLModel(experience: 0, lvls: 0));
-   
+     boxg.add(LVLModel(experience: 0, lvls: 0));
+  }
 
     List<LVLModel> lvlList = boxg.values.toList();
     b = 1;

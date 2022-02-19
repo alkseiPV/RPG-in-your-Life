@@ -14,7 +14,7 @@ class LvlProgress extends StatelessWidget {
 
       if (state is LoadingLvlState) {
         return  SizedBox(
-          width: 220,
+          width: 150,
           child: LinearProgressIndicator(
             backgroundColor: Colors.cyan[100],
             valueColor: new AlwaysStoppedAnimation<Color>(Colors.green),
@@ -24,7 +24,7 @@ class LvlProgress extends StatelessWidget {
         listlvl = state.loadedExp;
       }
       return SizedBox(
-        width: 200,
+        width: 180,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
