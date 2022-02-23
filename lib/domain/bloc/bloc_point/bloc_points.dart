@@ -50,7 +50,6 @@ class PointBloc extends Bloc<PointEvent, PointState> {
     on<PointChangeEvent>((event, emit) async {
       changePoint.changeThisPoint(event.indexPoint, event.changePoint);
 
-    
         await lvlBloc.lvlRepository.lvlExp();
         await lvlBloc.incrementLVL.incl(event.changePoint * 0.1);
    
