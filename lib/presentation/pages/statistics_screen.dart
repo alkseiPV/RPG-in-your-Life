@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'package:mmorpg_life/common/colors_app.dart';
+import 'package:mmorpg_life/data/datasources/local_data_storage.dart';
 import 'package:mmorpg_life/domain/bloc/bloc_local_storage/local_storage_bloc.dart';
 import 'package:mmorpg_life/domain/bloc/bloc_local_storage/local_storage_event.dart';
 import 'package:mmorpg_life/domain/bloc/bloc_local_storage/local_storage_state.dart';
@@ -22,6 +27,8 @@ class MenuScreen extends StatefulWidget {
 class _MenuScreenState extends State<MenuScreen> {
   var storageBloc;
   var userBloc;
+  Uint8List? _imageBytes;
+  String? byttes;
 
   @override
   void initState() {
@@ -29,7 +36,42 @@ class _MenuScreenState extends State<MenuScreen> {
     userBloc = context.read<LvlBloc>();
     storageBloc.add(GetInfoEvent('name'));
     userBloc.add(IncLvlEvent());
+    aa();
     super.initState();
+  }
+
+  aa() async {
+    byttes = await SecureStorage().readInfo('avatar');
+    print(byttes);
+    _imageBytes = byttes != null
+        ? Uint8List.fromList(List<int>.from(jsonDecode(byttes!)))
+        : null;
+    setState(() {});
+  }
+
+  Future<void> _pickImage() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      final imageBytes = await pickedFile.readAsBytes();
+      setState(() {
+        SecureStorage().writeInfo('avatar', '$_imageBytes');
+        _imageBytes = imageBytes;
+      });
+    }
+  }
+
+  Widget _buildImageWidget() {
+    if (_imageBytes != null) {
+      final image = MemoryImage(_imageBytes!);
+      return Image(image: image, fit: BoxFit.fill);
+    } else {
+      return Image(
+        image: AssetImage('assets/images/avatarka.png'),
+        fit: BoxFit.fill,
+      );
+    }
   }
 
   @override
@@ -54,15 +96,17 @@ class _MenuScreenState extends State<MenuScreen> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      width: 100,
-                      height: 100,
-                      decoration: BoxDecoration(
-                          color: AppColors.textColorBlack,
-                          borderRadius: BorderRadius.circular(360)),
-                      child: Image(
-                        image: AssetImage('assets/images/avatarka.png'),
-                      ),
+                    InkWell(
+                      onTap: () {
+                        _pickImage();
+                      },
+                      child: Container(
+                          width: 100,
+                          height: 100,
+                          decoration: BoxDecoration(
+                              color: AppColors.textColorBlack,
+                              borderRadius: BorderRadius.circular(360)),
+                          child: _buildImageWidget()),
                     ),
                     SizedBox(
                       width: 40,

@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mmorpg_life">
+     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
    <application
         android:label="mmorpg_life"
         android:icon="@mipmap/ic_launcher">
